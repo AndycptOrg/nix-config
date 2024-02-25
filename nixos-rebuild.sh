@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # A rebuild script that commits on a successful build
 set -e
 
