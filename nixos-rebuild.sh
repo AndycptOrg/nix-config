@@ -3,7 +3,7 @@
 set -e
 
 pushd ~/dotfiles/nixos/
-nvim oatman-pc.nix
+nvim configuration.nix
 alejandra . &>/dev/null
 git diff -U0 *.nix
 echo "NixOS Rebuilding..."
