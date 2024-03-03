@@ -18,7 +18,7 @@ pushd ~/dotfiles/nixos/
 $EDITOR configuration.nix
 
 # Autoformat your nix files
-alejandra . &>/dev/null
+alejandra . >/dev/null
 
 # Shows your changes
 git diff -U0 *.nix
