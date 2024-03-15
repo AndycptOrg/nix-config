@@ -15,7 +15,7 @@ set -e
 # cd to your config dir
 pushd ~/dotfiles/nixos/
 
-# Exit early if no files changed (thanks @singiamtel!)
+# Early return if no changes were detected (thanks @singiamtel!)
 if git diff --quiet *.nix; then
     echo "No changes detected, exiting."
     popd
