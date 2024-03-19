@@ -12,6 +12,9 @@
 # A rebuild script that commits on a successful build
 set -e
 
+# Edit your config
+$EDITOR configuration.nix
+
 # cd to your config dir
 pushd ~/dotfiles/nixos/
 
@@ -21,9 +24,6 @@ if git diff --quiet *.nix; then
     popd
     exit 0
 fi
-
-# Edit your config
-$EDITOR configuration.nix
 
 # Autoformat your nix files
 alejandra . >/dev/null
