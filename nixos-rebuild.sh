@@ -40,14 +40,14 @@ if ! sudo nixos-rebuild switch -I nixos-config=/home/nixos/.dotfiles/nixos/confi
     cat nixos-switch.log | grep --color error
     exit 1
 fi
-echo "getting current"
+
 # Get current generation metadata
 current=$(nixos-rebuild list-generations | grep "True")
-echo "$current about to commit"
+
 # Commit all changes witih the generation metadata
 git commit -am "$current"
 
-echo "Committed, now exiting successfully"
+
 # Back to where you were
 popd
 
