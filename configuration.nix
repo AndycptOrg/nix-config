@@ -1,20 +1,21 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
 # NixOS-WSL specific options are documented on the NixOS-WSL repository:
 # https://github.com/nix-community/NixOS-WSL
-
-{ config, lib, pkgs, ... }:
-
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 # local ver
 let
   home-manager = builtins.fetchTarball {
     url = https://github.com/nix-community/home-manager/archive/release-26.05.tar.gz;
     sha256 = "sha256:0qqlidc85b1km0dp2f03wdx9k37fyisnjm6cn685ab66m723c2s6";
   };
-in
-{
+in {
   imports = [
     # include NixOS-WSL modules
     <nixos-wsl/modules>
@@ -39,7 +40,7 @@ in
   };
 
   home-manager.users = {
-    andy = { pkgs, ...}: {
+    andy = {pkgs, ...}: {
       home.packages = with pkgs; [
         fastfetch
       ];
@@ -57,7 +58,7 @@ in
       # originally installed.
       home.stateVersion = "26.05";
     };
-    nixos = { pkgs, ... }: {
+    nixos = {pkgs, ...}: {
       home.packages = with pkgs; [
         tree
         git
@@ -66,6 +67,8 @@ in
 
       programs.vim = {
         enable = true;
+
+        defaultEditor = true;
 
         settings = {
           number = true;
@@ -147,7 +150,8 @@ in
       # dns.hosts = [ "192.168.1.188 hostname.domain" ];
     };
 
-    lists = [    # Lists can be added via URL
+    lists = [
+      # Lists can be added via URL
       {
         url = "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/pro.txt";
         type = "block";
@@ -168,6 +172,6 @@ in
 
   services.pihole-web = {
     enable = true;
-    ports = [ "443s" ];
+    ports = ["443s"];
   };
 }
