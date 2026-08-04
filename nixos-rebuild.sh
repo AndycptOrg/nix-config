@@ -16,7 +16,7 @@ set -e
 $EDITOR configuration.nix
 
 # cd to your config dir
-pushd ~/dotfiles/nixos/
+pushd ~/.dotfiles/nixos/
 
 # Early return if no changes were detected (thanks @singiamtel!)
 if git diff --quiet '*.nix'; then
@@ -26,8 +26,8 @@ if git diff --quiet '*.nix'; then
 fi
 
 # Autoformat your nix files
-alejandra . &>/dev/null \
-  || ( alejandra . ; echo "formatting failed!" && exit 1)
+# alejandra . &>/dev/null \
+#   || ( alejandra . ; echo "formatting failed!" && exit 1)
 
 # Shows your changes
 git diff -U0 '*.nix'
@@ -35,16 +35,21 @@ git diff -U0 '*.nix'
 echo "NixOS Rebuilding..."
 
 # Rebuild, output simplified errors, log trackebacks
-sudo nixos-rebuild switch &>nixos-switch.log || (cat nixos-switch.log | grep --color error && exit 1)
-
+if ! sudo nixos-rebuild switch -I nixos-config=/home/nixos/.dotfiles/nixos/configuration.nix&>nixos-switch.log; then
+    echo "Error switching, exiting"
+    cat nixos-switch.log | grep --color error
+    exit 1
+fi
+echo "getting current"
 # Get current generation metadata
-current=$(nixos-rebuild list-generations | grep current)
-
+current=$(nixos-rebuild list-generations | grep "True")
+echo "$current about to commit"
 # Commit all changes witih the generation metadata
 git commit -am "$current"
 
+echo "Committed, now exiting successfully"
 # Back to where you were
 popd
 
 # Notify all OK!
-notify-send -e "NixOS Rebuilt OK!" --icon=software-update-available
+# notify-send -e "NixOS Rebuilt OK!" --icon=software-update-available

@@ -7,6 +7,7 @@
 
 { config, lib, pkgs, ... }:
 
+# local ver
 let
   home-manager = builtins.fetchTarball {
     url = https://github.com/nix-community/home-manager/archive/release-26.05.tar.gz;
