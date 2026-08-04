@@ -61,6 +61,7 @@ in
       home.packages = with pkgs; [
         tree
         git
+        alejandra
       ];
 
       programs.vim = {
