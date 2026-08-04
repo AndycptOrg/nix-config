@@ -8,9 +8,7 @@
   lib,
   pkgs,
   ...
-}:
-# local ver
-let
+}: let
   home-manager = builtins.fetchTarball {
     url = https://github.com/nix-community/home-manager/archive/release-26.05.tar.gz;
     sha256 = "sha256:0qqlidc85b1km0dp2f03wdx9k37fyisnjm6cn685ab66m723c2s6";
