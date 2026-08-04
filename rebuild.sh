@@ -35,6 +35,7 @@ git diff -U0 '*.nix'
 echo "NixOS Rebuilding..."
 
 # Rebuild, output simplified errors, log trackebacks
+# shellcheck disable=SC2024
 if ! sudo nixos-rebuild switch -I nixos-config=/home/nixos/.dotfiles/nixos/configuration.nix&>nixos-switch.log; then
     echo "Error switching, exiting"
     cat nixos-switch.log | grep --color error

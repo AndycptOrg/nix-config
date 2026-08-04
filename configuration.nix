@@ -102,6 +102,18 @@ in {
     };
   };
 
+  environment.systemPackages = [
+    (pkgs.writeShellApplication
+      {
+        name = "rebuild";
+        runtimeInputs = with pkgs; [
+          git
+          alejandra
+        ];
+        text = builtins.readFile /home/nixos/.dotfiles/nixos/rebuild.sh;
+      })
+  ];
+
   wsl.enable = true;
   wsl.defaultUser = "nixos";
 
