@@ -92,6 +92,7 @@ in {
         matchBlocks = {
         };
       };
+
       programs.bash.enable = true;
 
       # The state version is required and should stay at the version you
