@@ -21,6 +21,9 @@ in {
   ];
 
   users.users = {
+    dev = {
+      isNormalUser = true;
+    };
     andy = {
       isNormalUser = true;
 
@@ -38,6 +41,11 @@ in {
   };
 
   home-manager.users = {
+    dev = {pkgs, ...}: {
+      # The state version is required and should stay at the version you
+      # originally installed.
+      home.stateVersion = "26.05";
+    };
     andy = {pkgs, ...}: {
       home.packages = with pkgs; [
         fastfetch
