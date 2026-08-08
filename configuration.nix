@@ -42,6 +42,10 @@ in {
 
   home-manager.users = {
     dev = {pkgs, ...}: {
+      home.packages = with pkgs; [
+        git
+      ];
+
       # The state version is required and should stay at the version you
       # originally installed.
       home.stateVersion = "26.05";
@@ -121,6 +125,11 @@ in {
   environment.systemPackages = [
     pkgs.vim
   ];
+
+  # templates.test = {
+  #   path = ./test;
+  #   description = "flake test template";
+  # };
 
   wsl.enable = true;
   wsl.defaultUser = "nixos";
