@@ -7,6 +7,7 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }: let
   home-manager = builtins.fetchTarball {
@@ -16,7 +17,7 @@
 in {
   imports = [
     # include NixOS-WSL modules
-    <nixos-wsl/modules>
+    inputs.nixos-wsl.nixosModules.default
     (import "${home-manager}/nixos")
   ];
 
@@ -80,7 +81,7 @@ in {
               git
               alejandra
             ];
-            text = builtins.readFile /home/nixos/.dotfiles/nixos/rebuild.sh;
+            text = builtins.readFile ./rebuild.sh;
           })
       ];
 

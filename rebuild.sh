@@ -37,7 +37,7 @@ echo "NixOS Rebuilding..."
 # Rebuild, output simplified errors, log trackebacks
 # error not applicable as sudo is not required for write to log
 # shellcheck disable=SC2024
-if ! sudo nixos-rebuild switch -I nixos-config=/home/nixos/.dotfiles/nixos/configuration.nix&>nixos-switch.log; then
+if ! sudo nixos-rebuild switch --flake -I nixos-config=/home/nixos/.dotfiles/nixos/configuration.nix&>nixos-switch.log; then
     echo "Error switching, exiting"
     cat nixos-switch.log | grep --color error
     exit 1
