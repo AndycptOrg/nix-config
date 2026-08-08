@@ -7,7 +7,13 @@
   };
 
   outputs = { nixpkgs, ... }@inputs: {
-    
+    templates = {
+      rust = {
+        path = ./templates/rust;
+        description = "rust template";
+      };
+    };
+
     nixosConfigurations.NixOSBtw = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
       system = "x86_64-linux";
