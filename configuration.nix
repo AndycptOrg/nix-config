@@ -61,6 +61,15 @@ in {
         tree
         git
         alejandra
+        (pkgs.writeShellApplication
+          {
+            name = "rebuild";
+            runtimeInputs = with pkgs; [
+              git
+              alejandra
+            ];
+            text = builtins.readFile /home/nixos/.dotfiles/nixos/rebuild.sh;
+          })
       ];
 
       programs.vim = {
@@ -102,15 +111,7 @@ in {
   };
 
   environment.systemPackages = [
-    (pkgs.writeShellApplication
-      {
-        name = "rebuild";
-        runtimeInputs = with pkgs; [
-          git
-          alejandra
-        ];
-        text = builtins.readFile /home/nixos/.dotfiles/nixos/rebuild.sh;
-      })
+    pkgs.vim
   ];
 
   wsl.enable = true;
