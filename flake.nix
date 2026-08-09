@@ -6,7 +6,7 @@
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
   };
 
-  outputs = { nixpkgs, ... }@inputs: {
+  outputs = {nixpkgs, ...} @ inputs: {
     templates = {
       rust = {
         path = ./templates/rust;
@@ -15,7 +15,7 @@
     };
 
     nixosConfigurations.NixOSBtw = nixpkgs.lib.nixosSystem {
-      specialArgs = { inherit inputs; };
+      specialArgs = {inherit inputs;};
       system = "x86_64-linux";
       modules = [
         ./configuration.nix
