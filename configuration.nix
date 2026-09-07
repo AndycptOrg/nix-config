@@ -45,12 +45,12 @@ in {
     dev = {pkgs, ...}: {
       home.packages = with pkgs; [
         git
-        vscodium
+        vscodium.fhs
       ];
 
       programs.vscode = {
         enable = true;
-        package = pkgs.vscodium;
+        package = pkgs.vscodium.fhs;
       };
 
       # The state version is required and should stay at the version you
