@@ -44,6 +44,7 @@ in {
   home-manager.users = {
     dev = {pkgs, ...}: {
       home.packages = with pkgs; [
+        tree
         git
         vscodium.fhs
       ];
