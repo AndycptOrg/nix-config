@@ -52,6 +52,10 @@ in {
       programs.vscode = {
         enable = true;
         package = pkgs.vscodium.fhs;
+
+        profiles.default.extensions = with pkgs.vscode-extensions; [
+          github.copilot-chat
+        ];
       };
 
       # The state version is required and should stay at the version you
