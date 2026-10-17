@@ -24,6 +24,9 @@ in {
   users.users = {
     dev = {
       isNormalUser = true;
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJeWjj2ot1o/k0AlOv3cjH6VOIMyhLaeT7IYmUyMFoGZ"
+      ];
     };
     andy = {
       isNormalUser = true;
