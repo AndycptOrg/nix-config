@@ -44,7 +44,6 @@ in {
   home-manager.users = {
     dev = {pkgs, ...}: {
       home.packages = with pkgs; [
-        tree
         git
         vscodium.fhs
       ];
@@ -82,7 +81,6 @@ in {
     };
     nixos = {pkgs, ...}: {
       home.packages = with pkgs; [
-        tree
         git
         alejandra
         (pkgs.writeShellApplication
@@ -136,6 +134,7 @@ in {
 
   environment.systemPackages = [
     pkgs.vim
+    pkgs.tree
   ];
 
   # templates.test = {
