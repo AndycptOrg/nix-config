@@ -159,6 +159,8 @@ in {
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
+  nixpkgs.config.allowUnfree = true;
+
   networking.hostName = "NixOSBtw";
   services.openssh = {
     enable = true;
