@@ -48,6 +48,13 @@ in {
         vscodium.fhs
       ];
 
+      programs.git = {
+        settings = {
+          user.name = "andyDev";
+          user.email = "no-reply@outlook.com";
+        };
+      };
+
       programs.vscode = {
         enable = true;
         package = pkgs.vscodium.fhs;
